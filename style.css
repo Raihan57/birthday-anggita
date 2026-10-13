@@ -31,10 +31,13 @@ button:focus-visible{outline:3px solid var(--pink-dark);outline-offset:4px}
 .hero{position:relative;width:min(100%,650px);margin:30px auto 0}.hero .eyebrow{margin-bottom:15px}
 .hero h1{color:#795164;font-size:clamp(42px,9vw,70px);line-height:1.08}
 .hero-copy{max-width:430px;margin:20px auto 28px;color:var(--muted);font-size:15px;line-height:1.9}
-.photo-frame{position:relative;width:min(72vw,290px);margin:0 auto 25px;padding:11px 11px 34px;border:1px solid #f4d3df;border-radius:160px 160px 28px 28px;background:white;box-shadow:0 18px 50px #d8759826;transform:rotate(-2deg);transition:transform .35s}
-.photo-frame:hover{transform:rotate(0) translateY(-5px)}.photo-frame img{display:block;width:100%;height:340px;border-radius:150px 150px 18px 18px;object-fit:cover;background:#ffe7ef}
-.photo-sticker{position:absolute;z-index:2;display:grid;place-items:center;width:43px;height:43px;border-radius:50%;background:#fff0f5;box-shadow:0 5px 15px #c96c8c22;font-size:24px}
-.sticker-left{left:-19px;top:42%;color:var(--pink-dark)}.sticker-right{right:-15px;top:17%;transform:rotate(12deg)}
+.photo-frame{position:relative;width:min(76vw,310px);margin:0 auto 30px;padding:10px 10px 38px;border:2px solid #f5c2d5;border-radius:190px 190px 30px 30px;background:linear-gradient(145deg,#fff 0%,#fff7fa 65%,#ffe1ec 100%);box-shadow:0 0 0 7px #ffffffa8,0 0 0 9px #f7d4e0,0 22px 55px #d8759833;transform:rotate(-2deg);transition:transform .35s,box-shadow .35s}
+.photo-frame::before{content:'♡  WITH LOVE  ♡';position:absolute;bottom:12px;left:0;right:0;color:#d95785;text-align:center;font-size:10px;font-weight:900;letter-spacing:3px}
+.photo-frame::after{content:'✦';position:absolute;top:-19px;right:12px;display:grid;place-items:center;width:43px;height:43px;border:3px solid white;border-radius:50%;background:#f8c9d9;color:#bd4d79;font-size:24px;box-shadow:0 5px 15px #c96c8c25;transform:rotate(12deg)}
+.photo-frame:hover{transform:rotate(0) translateY(-5px);box-shadow:0 0 0 7px #ffffffa8,0 0 0 9px #f7d4e0,0 28px 65px #d8759844}
+.photo-frame img{display:block;width:100%;height:370px;border:3px solid white;border-radius:180px 180px 20px 20px;object-fit:cover;object-position:center 35%;background:#ffe7ef;box-shadow:0 5px 18px #d875981c}
+.photo-sticker{position:absolute;z-index:2;display:grid;place-items:center;width:47px;height:47px;border:3px solid white;border-radius:50%;background:#fff0f5;box-shadow:0 5px 15px #c96c8c22;font-size:24px}
+.sticker-left{left:-24px;top:42%;color:var(--pink-dark);transform:rotate(-12deg)}.sticker-right{right:-22px;top:20%;transform:rotate(12deg)}
 .hero h2{margin-top:5px;font-size:clamp(20px,5vw,27px);font-weight:900}.nickname{margin-top:5px;color:var(--pink-dark);font-size:13px;font-style:italic}
 .love-tags{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin:24px 0}.love-tags span{padding:9px 13px;border:1px solid #f7d9e3;border-radius:999px;background:#ffffffad;font-size:11px;font-weight:800}
 .scroll-note{margin-top:30px;color:#b991a1;font-size:12px;animation:bob 2s ease-in-out infinite}
@@ -80,7 +83,7 @@ footer{position:relative;z-index:1;padding:25px 15px 35px;text-align:center;colo
  .music-button #music-label{max-width:76px}
  .intro{padding:75px 16px 28px}.intro-card{padding:38px 23px 28px;border-radius:26px}
  .home{padding:90px 17px 50px}.hero{margin-top:25px}.hero-copy{font-size:14px}
- .photo-frame{width:min(75vw,275px)}.photo-frame img{height:315px}
+ .photo-frame{width:min(78vw,285px);padding-bottom:36px}.photo-frame img{height:330px}
  .sparkle-one{left:0}.sparkle-two{right:0}
  .letter,.surprise{padding:35px 14px 55px}.section-card{padding:27px 19px;border-radius:25px}
  .letter-paper{padding:20px 17px;font-size:13px}.gift{font-size:78px}
