@@ -1,546 +1,180 @@
-/* ==================================================
-   OPENING CINEMATIC
-================================================== */
-
-function startExperience() {
-
-    const intro =
-        document.getElementById("intro");
-
-    const home =
-        document.getElementById("home");
-
-
-    if (!intro || !home) {
-        return;
-    }
-
-
-    intro.classList.add("hide");
-
-
-    setTimeout(function() {
-
-        home.classList.add("active");
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-
-    }, 500);
-
-}
-
-
-/* ==================================================
-   PESAN ULANG TAHUN
-================================================== */
-
-const message =
-`Selamat ulang tahun, Anggita Dwi Rismawati ❤️
+const message = `Selamat ulang tahun, Anggita Dwi Rismawati ❤️
 
 Selamat bertambah usia, sayang.
 
-Hari ini adalah hari yang sangat spesial,
-karena hari ini adalah hari lahir seseorang
-yang begitu berarti dalam hidupku.
+Hari ini adalah hari yang spesial karena seseorang yang begitu berarti dalam hidupku sedang merayakan hari lahirnya. Aku bersyukur bisa mengenal kamu, dekat dengan kamu, dan punya cerita bersamamu.
 
-Aku bersyukur bisa mengenal kamu,
-bisa dekat dengan kamu,
-dan bisa memiliki begitu banyak cerita
-bersama kamu.
+Terima kasih untuk setiap senyum, perhatian, cerita, dan momen kecil yang kita lewati bersama. Hal-hal sederhana terasa lebih indah sejak ada kamu.
 
-Terima kasih sudah hadir di hidupku.
-Terima kasih untuk setiap senyum,
-setiap perhatian, setiap cerita,
-dan setiap momen kecil yang kita lewati bersama.
+Aku mungkin tidak selalu bisa memberikan hal-hal yang sempurna, tapi aku ingin terus berusaha memberikan yang terbaik untukmu.
 
-Mungkin aku tidak selalu bisa memberikan
-hal-hal yang sempurna untuk kamu,
-tapi aku ingin kamu tahu bahwa
-aku akan selalu berusaha memberikan
-yang terbaik untukmu.
+Di usia barumu ini, aku berharap kamu selalu sehat, bahagia, dan dikelilingi hal-hal baik. Semoga impianmu tercapai satu per satu, langkahmu dimudahkan, dan kamu selalu punya alasan untuk tersenyum.
 
-Di usia kamu yang baru ini,
-aku berharap kamu selalu diberikan
-kesehatan, kebahagiaan, dan ketenangan.
+Aku berharap masih bisa menemani banyak cerita yang akan datang: mendengarkan ceritamu, tertawa bersamamu, dan melewati banyak hal bersama.
 
-Semoga semua impian dan keinginanmu
-bisa tercapai satu per satu.
-Semoga langkahmu selalu dimudahkan,
-dan semoga hal-hal baik selalu datang
-ke dalam hidupmu.
+Selamat ulang tahun, cintakuuu. Semoga hari ini menjadi awal dari banyak kebahagiaan baru untukmu.
 
-Aku juga berharap,
-di banyak cerita yang akan datang,
-aku masih bisa berada di sampingmu.
-Menemani kamu,
-mendengarkan cerita kamu,
-tertawa bersama kamu,
-dan melewati banyak hal bersama kamu.
+Aku sayang kamu, hari ini dan seterusnya. ❤️`;
 
-Anggita, terima kasih sudah menjadi
-seseorang yang begitu spesial bagiku.
-
-Selamat ulang tahun, sayang. ❤️
-
-Semoga hari ini menjadi awal
-dari banyak kebahagiaan baru untukmu.
-
-Aku sayang kamu.
-Hari ini, besok, dan semoga seterusnya. ❤️`;
-
-
-/* ==================================================
-   VARIABEL
-================================================== */
-
-let index = 0;
-
+let typingIndex = 0;
 let typingStarted = false;
-
 let surpriseOpened = false;
+let musicStarted = false;
+let typingTimer = null;
 
+function startExperience() {
+  const intro = document.getElementById("intro");
+  const home = document.getElementById("home");
+  intro.classList.add("hide");
+  home.classList.add("active");
+  window.setTimeout(() => {
+    intro.style.display = "none";
+    home.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, 550);
+}
 
-/* ==================================================
-   BUKA SURAT
-================================================== */
+async function toggleMusic() {
+  const music = document.getElementById("bg-music");
+  const button = document.getElementById("music-button");
+  const icon = document.getElementById("music-icon");
+  const label = document.getElementById("music-label");
+
+  if (music.paused) {
+    try {
+      await music.play();
+      musicStarted = true;
+      icon.textContent = "⏸";
+      label.textContent = "Jeda musik";
+      button.setAttribute("aria-label", "Jeda musik");
+      button.setAttribute("aria-pressed", "true");
+    } catch (error) {
+      label.textContent = "Coba putar lagi";
+      console.warn("Musik belum bisa diputar:", error);
+    }
+  } else {
+    music.pause();
+    icon.textContent = "▶";
+    label.textContent = "Putar musik";
+    button.setAttribute("aria-label", "Putar musik");
+    button.setAttribute("aria-pressed", "false");
+  }
+}
+
+function syncMusicButton() {
+  const music = document.getElementById("bg-music");
+  const button = document.getElementById("music-button");
+  const icon = document.getElementById("music-icon");
+  const label = document.getElementById("music-label");
+  if (!music || !button) return;
+  const playing = !music.paused;
+  icon.textContent = playing ? "⏸" : "▶";
+  label.textContent = playing ? "Jeda musik" : "Putar musik";
+  button.setAttribute("aria-label", playing ? "Jeda musik" : "Putar musik");
+  button.setAttribute("aria-pressed", String(playing));
+}
 
 function openLetter() {
+  const letter = document.getElementById("letter");
+  letter.style.display = "block";
+  letter.scrollIntoView({ behavior: "smooth", block: "start" });
 
-    const letter =
-        document.getElementById("letter");
-
-
-    if (!letter) {
-        return;
-    }
-
-
-    letter.style.display = "flex";
-
-
-    setTimeout(function() {
-
-        letter.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
-
-    }, 100);
-
-
-    setTimeout(function() {
-
-        letter.classList.add("opened");
-
-    }, 500);
-
-
-    /* Musik */
-
-    const music =
-        document.getElementById("bg-music");
-
-
-    if (music) {
-
-        music.volume = 0.4;
-
-        music.play().catch(function(error) {
-
-            console.log(
-                "Musik belum bisa diputar:",
-                error
-            );
-
-        });
-
-    }
-
-
-    /* Mulai mengetik */
-
-    if (!typingStarted) {
-
-        typingStarted = true;
-
-
-        setTimeout(function() {
-
-            typeMessage();
-
-        }, 1000);
-
-    }
-
+  if (!typingStarted) {
+    typingStarted = true;
+    typingTimer = window.setTimeout(typeMessage, 500);
+  }
 }
-
-
-/* ==================================================
-   EFEK MENGETIK
-================================================== */
 
 function typeMessage() {
-
-    const textElement =
-        document.getElementById("typing-text");
-
-
-    if (!textElement) {
-        return;
-    }
-
-
-    if (index < message.length) {
-
-
-        if (
-            message.charAt(index) === "\n"
-        ) {
-
-            textElement.innerHTML += "<br>";
-
-        }
-
-        else {
-
-            textElement.innerHTML +=
-                message.charAt(index);
-
-        }
-
-
-        index++;
-
-
-        setTimeout(
-            typeMessage,
-            45
-        );
-
-    }
-
-    else {
-
-
-        const button =
-            document.querySelector(
-                ".surprise-button"
-            );
-
-
-        if (button) {
-
-            button.classList.add(
-                "button-show"
-            );
-
-        }
-
-    }
-
+  const textElement = document.getElementById("typing-text");
+  const cursor = document.getElementById("typing-cursor");
+  if (typingIndex < message.length) {
+    const char = message.charAt(typingIndex++);
+    textElement.append(document.createTextNode(char));
+    typingTimer = window.setTimeout(typeMessage, char === "\n" ? 180 : 28);
+  } else {
+    if (cursor) cursor.style.display = "none";
+    document.getElementById("surprise-button").hidden = false;
+    document.getElementById("surprise-button").classList.add("show-button");
+  }
 }
-
-
-/* ==================================================
-   BUKA SURPRISE
-================================================== */
 
 function openSurprise() {
-
-    const surprise =
-        document.getElementById("surprise");
-
-
-    if (!surprise) {
-        return;
-    }
-
-
-    if (surpriseOpened) {
-        return;
-    }
-
-
+  const surprise = document.getElementById("surprise");
+  if (!surpriseOpened) {
     surpriseOpened = true;
-
-
-    surprise.style.display = "flex";
-
-
-    setTimeout(function() {
-
-        surprise.scrollIntoView({
-
-            behavior: "smooth",
-
-            block: "start"
-
-        });
-
-    }, 100);
-
-
+    surprise.style.display = "block";
+    window.setTimeout(() => surprise.scrollIntoView({ behavior: "smooth", block: "start" }), 80);
     createHearts();
-
     createConfetti();
-
+  } else {
+    surprise.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
 }
-
-
-/* ==================================================
-   KLIK HADIAH
-================================================== */
 
 function giftClicked() {
-
-    createHearts();
-
-    createConfetti();
-
-
-    const gift =
-        document.querySelector(".gift");
-
-
-    if (gift) {
-
-        gift.style.transform =
-            "scale(1.35) rotate(-8deg)";
-
-
-        setTimeout(function() {
-
-            gift.style.transform = "";
-
-        }, 500);
-
-    }
-
+  const gift = document.getElementById("gift");
+  gift.style.transform = "scale(1.25) rotate(-9deg)";
+  window.setTimeout(() => { gift.style.transform = ""; }, 450);
+  createHearts();
+  createConfetti();
 }
-
-
-/* ==================================================
-   HATI BERHAMBURAN
-================================================== */
 
 function createHearts() {
-
-    const heartSymbols = [
-
-        "❤️",
-        "💕",
-        "💗",
-        "💖",
-        "💘",
-        "💝"
-
-    ];
-
-
-    for (
-        let i = 0;
-        i < 35;
-        i++
-    ) {
-
-
-        const heart =
-            document.createElement("div");
-
-
-        heart.classList.add(
-            "celebration-heart"
-        );
-
-
-        heart.innerHTML =
-            heartSymbols[
-                Math.floor(
-                    Math.random() *
-                    heartSymbols.length
-                )
-            ];
-
-
-        heart.style.left =
-            Math.random() * 100 + "vw";
-
-
-        heart.style.top =
-            Math.random() * 100 + "vh";
-
-
-        heart.style.fontSize =
-            (
-                15 +
-                Math.random() * 25
-            ) + "px";
-
-
-        heart.style.animationDuration =
-            (
-                2 +
-                Math.random() * 3
-            ) + "s";
-
-
-        heart.style.animationDelay =
-            Math.random() * 0.8 + "s";
-
-
-        document.body.appendChild(
-            heart
-        );
-
-
-        setTimeout(function() {
-
-            heart.remove();
-
-        }, 5000);
-
-    }
-
+  const symbols = ["❤️", "💕", "💗", "💖", "💘", "💝"];
+  for (let i = 0; i < 28; i++) {
+    const heart = document.createElement("div");
+    heart.className = "celebration-heart";
+    heart.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.top = (45 + Math.random() * 50) + "vh";
+    heart.style.fontSize = (16 + Math.random() * 22) + "px";
+    heart.style.animationDelay = Math.random() * .7 + "s";
+    document.body.appendChild(heart);
+    window.setTimeout(() => heart.remove(), 4200);
+  }
 }
-
-
-/* ==================================================
-   CONFETTI
-================================================== */
 
 function createConfetti() {
-
-    const symbols = [
-
-        "✨",
-        "💖",
-        "💕",
-        "❤️",
-        "⭐",
-        "🌸"
-
-    ];
-
-
-    for (
-        let i = 0;
-        i < 45;
-        i++
-    ) {
-
-
-        const confetti =
-            document.createElement("div");
-
-
-        confetti.classList.add(
-            "celebration-confetti"
-        );
-
-
-        confetti.innerHTML =
-            symbols[
-                Math.floor(
-                    Math.random() *
-                    symbols.length
-                )
-            ];
-
-
-        confetti.style.left =
-            Math.random() * 100 + "vw";
-
-
-        confetti.style.top =
-            "-50px";
-
-
-        confetti.style.fontSize =
-            (
-                12 +
-                Math.random() * 22
-            ) + "px";
-
-
-        confetti.style.animationDuration =
-            (
-                2 +
-                Math.random() * 3
-            ) + "s";
-
-
-        confetti.style.animationDelay =
-            Math.random() * 1.5 + "s";
-
-
-        document.body.appendChild(
-            confetti
-        );
-
-
-        setTimeout(function() {
-
-            confetti.remove();
-
-        }, 6000);
-
-    }
-
+  const symbols = ["✨", "💖", "💕", "⭐", "🌸"];
+  for (let i = 0; i < 26; i++) {
+    const piece = document.createElement("div");
+    piece.className = "celebration-confetti";
+    piece.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    piece.style.left = Math.random() * 100 + "vw";
+    piece.style.top = "-40px";
+    piece.style.fontSize = (12 + Math.random() * 18) + "px";
+    piece.style.animationDelay = Math.random() * 1.2 + "s";
+    document.body.appendChild(piece);
+    window.setTimeout(() => piece.remove(), 5000);
+  }
 }
-
-
-/* ==================================================
-   ULANGI KEJUTAN
-================================================== */
 
 function replaySurprise() {
-
-    createHearts();
-
-    createConfetti();
-
-
-    const gift =
-        document.querySelector(".gift");
-
-
-    if (gift) {
-
-        gift.style.transform =
-            "scale(1.35) rotate(-8deg)";
-
-
-        setTimeout(function() {
-
-            gift.style.transform = "";
-
-        }, 500);
-
-    }
-
-
-    const music =
-        document.getElementById(
-            "bg-music"
-        );
-
-
-    if (music) {
-
-        music.play().catch(
-            function(error) {
-
-                console.log(
-                    "Musik belum bisa diputar:",
-                    error
-                );
-
-            }
-        );
-
-    }
-
+  createHearts();
+  createConfetti();
 }
+
+function backToHome() {
+  document.getElementById("intro").style.display = "none";
+  document.getElementById("home").classList.add("active");
+  document.getElementById("home").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const music = document.getElementById("bg-music");
+  if (music) {
+    music.volume = 0.4;
+    music.addEventListener("play", syncMusicButton);
+    music.addEventListener("pause", syncMusicButton);
+    music.addEventListener("ended", syncMusicButton);
+  }
+  const gift = document.getElementById("gift");
+  if (gift) {
+    gift.addEventListener("keydown", event => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        giftClicked();
+      }
+    });
+  }
+});
