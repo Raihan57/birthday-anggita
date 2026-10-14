@@ -111,3 +111,19 @@ footer{position:relative;z-index:1;padding:25px 15px 35px;text-align:center;colo
 .photo-frame > img:not(.cat-love-image){display:block;width:100%;height:370px;border:3px solid #fff;border-radius:180px 180px 20px 20px;object-fit:cover;object-position:center 35%;background:#ffe7ef;box-shadow:0 5px 18px #d875981c}
 .photo-frame > img.cat-love-image{position:absolute;z-index:5;right:-27px;bottom:7px;display:block;width:88px;height:auto;max-width:none;margin:0;padding:0;border:0;border-radius:0;object-fit:contain;object-position:center;background:transparent;box-shadow:none;filter:drop-shadow(0 4px 5px #b85e7c22);transform:rotate(4deg);animation:catStickerFloat 2.8s ease-in-out infinite;pointer-events:none}
 @media(max-width:600px){.photo-frame > img:not(.cat-love-image){height:330px}.photo-frame > img.cat-love-image{right:-23px;bottom:8px;width:74px}}
+
+
+/* Animasi amplop cinta saat tombol surat ditekan */
+.envelope-wrap.opening .envelope{animation:envelopePop .65s cubic-bezier(.2,.8,.2,1) both}
+.envelope-wrap.opening .envelope-flap{transform-origin:50% 0;animation:flapOpen .75s .25s ease-in-out forwards}
+.envelope-wrap.opening .envelope-seal{animation:sealPop .35s ease-in forwards}
+.envelope-wrap.opening .envelope-paper{animation:paperRise 1s .45s cubic-bezier(.2,.8,.2,1) forwards}
+.envelope-wrap.opening .envelope-front{animation:frontFade .35s .3s forwards}
+.letter-paper{opacity:0;transform:translateY(18px) scale(.98);transition:opacity .65s ease,transform .65s ease}
+.letter-paper.letter-revealed{opacity:1;transform:translateY(0) scale(1)}
+@keyframes envelopePop{0%{transform:scale(.88) rotate(-5deg)}55%{transform:scale(1.08) rotate(3deg)}100%{transform:scale(1) rotate(0)}}
+@keyframes flapOpen{0%{transform:rotateX(0);z-index:3}100%{transform:rotateX(180deg);z-index:1}}
+@keyframes sealPop{0%{transform:scale(1);opacity:1}100%{transform:scale(.2) translateY(-16px);opacity:0}}
+@keyframes paperRise{0%{transform:translateY(0) scale(.92);opacity:1}100%{transform:translateY(-48px) scale(1.03);opacity:1}}
+@keyframes frontFade{to{opacity:.25}}
+@media(prefers-reduced-motion:reduce){.envelope-wrap.opening .envelope,.envelope-wrap.opening .envelope-flap,.envelope-wrap.opening .envelope-seal,.envelope-wrap.opening .envelope-paper,.envelope-wrap.opening .envelope-front{animation:none}.letter-paper{transition:none}}
