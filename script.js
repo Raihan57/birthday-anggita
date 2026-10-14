@@ -75,12 +75,24 @@ function syncMusicButton() {
 
 function openLetter() {
   const letter = document.getElementById("letter");
+  const envelopeWrap = letter.querySelector(".envelope-wrap");
+  const letterPaper = letter.querySelector(".letter-paper");
+
   letter.style.display = "block";
   letter.scrollIntoView({ behavior: "smooth", block: "start" });
 
+  if (envelopeWrap && !envelopeWrap.classList.contains("opening")) {
+    envelopeWrap.classList.add("opening");
+    window.setTimeout(() => {
+      if (letterPaper) letterPaper.classList.add("letter-revealed");
+    }, 850);
+  } else if (letterPaper) {
+    letterPaper.classList.add("letter-revealed");
+  }
+
   if (!typingStarted) {
     typingStarted = true;
-    typingTimer = window.setTimeout(typeMessage, 500);
+    typingTimer = window.setTimeout(typeMessage, 1250);
   }
 }
 
