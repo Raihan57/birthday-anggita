@@ -99,3 +99,9 @@ footer{position:relative;z-index:1;padding:25px 15px 35px;text-align:center;colo
 @keyframes catFloat{0%,100%{transform:rotate(7deg) translateY(0)}50%{transform:rotate(2deg) translateY(-7px)}}
 @keyframes heartPop{0%,100%{transform:rotate(-12deg) scale(1)}50%{transform:rotate(-12deg) scale(1.12)}}
 @media(max-width:600px){.cat-love{right:-22px;bottom:24px;transform:scale(.9) rotate(7deg)}}
+
+
+/* Stiker ilustrasi kucing transparan memeluk hati */
+.cat-love-image{position:absolute;z-index:5;right:-42px;bottom:3px;width:105px;height:auto;object-fit:contain;filter:drop-shadow(0 5px 8px #b85e7c26);transform:rotate(5deg);animation:catStickerFloat 2.8s ease-in-out infinite;pointer-events:none}
+@keyframes catStickerFloat{0%,100%{transform:rotate(5deg) translateY(0)}50%{transform:rotate(1deg) translateY(-7px)}}
+@media(max-width:600px){.cat-love-image{right:-30px;bottom:4px;width:88px}}
