@@ -105,3 +105,9 @@ footer{position:relative;z-index:1;padding:25px 15px 35px;text-align:center;colo
 .cat-love-image{position:absolute;z-index:5;right:-42px;bottom:3px;width:105px;height:auto;object-fit:contain;filter:drop-shadow(0 5px 8px #b85e7c26);transform:rotate(5deg);animation:catStickerFloat 2.8s ease-in-out infinite;pointer-events:none}
 @keyframes catStickerFloat{0%,100%{transform:rotate(5deg) translateY(0)}50%{transform:rotate(1deg) translateY(-7px)}}
 @media(max-width:600px){.cat-love-image{right:-30px;bottom:4px;width:88px}}
+
+
+/* Perbaikan: stiker kucing jangan ikut aturan ukuran foto utama */
+.photo-frame > img:not(.cat-love-image){display:block;width:100%;height:370px;border:3px solid #fff;border-radius:180px 180px 20px 20px;object-fit:cover;object-position:center 35%;background:#ffe7ef;box-shadow:0 5px 18px #d875981c}
+.photo-frame > img.cat-love-image{position:absolute;z-index:5;right:-27px;bottom:7px;display:block;width:88px;height:auto;max-width:none;margin:0;padding:0;border:0;border-radius:0;object-fit:contain;object-position:center;background:transparent;box-shadow:none;filter:drop-shadow(0 4px 5px #b85e7c22);transform:rotate(4deg);animation:catStickerFloat 2.8s ease-in-out infinite;pointer-events:none}
+@media(max-width:600px){.photo-frame > img:not(.cat-love-image){height:330px}.photo-frame > img.cat-love-image{right:-23px;bottom:8px;width:74px}}
